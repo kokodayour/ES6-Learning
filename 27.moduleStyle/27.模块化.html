@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo</title>
+    <style></style>
+  </head>
+  <body></body>
+  <script type="module">
+    //通用方式调用
+    import * as func1 from "./27function1.js";
+    console.log(func1);
+
+    // import * as func2 from "./27function2.js";
+    // func2.getId();
+
+    // import * as func3 from "./27function3.js";
+    // func3.default.getSex(); //这里调用方法要用default
+
+    //---------------------------------------------
+    //解构赋值方式调用
+    import { id, getId } from "./27function2.js";
+    getId();
+
+    //---------------------------------------------
+    //简便形式, 只适用于默认导出
+    import oh from "./27function3.js";
+    console.log(oh.sex);
+    oh.getSex();
+  </script>
+</html>
