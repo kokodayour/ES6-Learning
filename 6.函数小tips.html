@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数小tips</title>
+  </head>
+  <body>
+    <p>
+      1. 函数名本质上就是指向函数的指针,
+      这就意味着一个函数可以有多个名称(因为可以有多个指向指针) 因此,
+      使用不带括号的函数就是直接访问指针而不会执行所指向的方法
+    </p>
+    <p>
+      2. ECMAScript函数既不关心传入参数个数, 也不关心这些参数的数据类型.
+      函数的参数在内部表现为一个数组. 函数被调用时总会接受一个数组,
+      但函数并不关心这个数组中包含什么.(可以通过直接调用arguments(伪)数组中的元素(没传进来默认undefined)来得到参数)
+      同样的, 由于对参数的约束比较随意, 所以自然不可能根据函数参数来进行重载...
+    </p>
+    <p>3. 函数默认值, 同Python的默认参数</p>
+    <p>4. 不定(剩余)参数, 同Java</p>
+  </body>
+  <script>
+    //1.
+    const test1 = function () {
+      console.log(18);
+    };
+    const test2 = test1; //test2同样也指向test1所定义的那个变量
+    test1(); //18
+    test2(); //18
+    test1; //什么都没有
+
+    //2.
+    const test3 = function () {
+      console.log(arguments[0] + arguments[1] + arguments[2]);
+      console.log(arguments[10]);
+    };
+    test3(1, 2, 3, 4); //6 underfined
+
+    //3. 可以同解构赋值相结合
+    const test4 = function ({ host = "127.0.0.1", username, password, port }) {
+      //   for (let i = 0; i < arguments.length; i++) {
+      //     console.log(arguments[i]);
+      //   } 打印出一个对象
+      console.log(host);
+      console.log(username);
+      console.log(password);
+      console.log(port);
+    };
+    test4({
+      host: "localhost",
+      username: "root",
+      password: "root",
+      port: "1234",
+    });
+    test4({
+      username: "root",
+      password: "root",
+      port: "1234",
+    });
+  </script>
+</html>

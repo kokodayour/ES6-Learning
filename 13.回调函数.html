@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回调函数</title>
+  </head>
+  <body>
+    <p>
+      在 JavaScript
+      里创建回调函数的方法是将它作为参数传递给另一个函数,然后当某个任务完成之后,立即调用它。
+    </p>
+    <p>
+      回调函数就是一个函数,它是在我们启动一个异步任务的时候就告诉它:s等你完成了这个任务之后要干什么。
+    </p>
+    <p>回调里面嵌入回调就是回调地狱!</p>
+  </body>
+  <script>
+    function func1(a, b) {
+      return a + b;
+    }
+    function func2(a, b) {
+      return a * b;
+    }
+    function func3(a, b) {
+      return a / b;
+    }
+    function funcTest(func, a, b) {
+      if (typeof func === "function") {
+        return func(a, b);
+      } else {
+        return `参数${func}和${a}没有使用回调函数`;
+      }
+    }
+    console.log(funcTest(func1, 10, 2));
+    console.log(funcTest(func2, 10, 2));
+    console.log(funcTest(func3, 10, 2));
+    console.log(funcTest(666, 888));
+  </script>
+  <script>
+    setTimeout(() => {
+      while (1) {}
+    }, 1000);
+    //线程被1000ms定时器的死循环所堵死, 以至于2000ms的定时器允许不了
+    setTimeout(() => {
+      console.log("我被堵死啦啦啦啦~");
+    }, 2000);
+    setTimeout(() => {
+      console.log("这是一个子线程(定时器线程)");
+    }, 200);
+    console.log("我先执行!");
+  </script>
+</html>

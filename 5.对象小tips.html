@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象小tips</title>
+  </head>
+  <body></body>
+  <script>
+    // 对象的简化写法 允许将变量和函数直接写入对象中作为属性和方法
+    const name = `wdk`;
+    const getName = function () {
+      return this.name;
+    };
+    const people = {
+      name,
+      getName,
+      getAge1: function () {
+        return 18;
+      },
+      //简化了对象方法的写法
+      getAge2() {
+        return 81;
+      },
+    };
+    console.log(people.getName()); //wdk
+    window.name = `hhh`;
+    console.log(getName()); //复习一下this, 因为这里是window调用
+    console.log(people.getAge1());
+    console.log(people.getAge2());
+  </script>
+</html>

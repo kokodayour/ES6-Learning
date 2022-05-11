@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>迭代器</title>
+  </head>
+  <body></body>
+  <script>
+    const academy = ["zh", "ch", "yg"];
+    for (v in academy) {
+      console.log(v); //0,1,2 v迭代的是键
+    }
+    for (v of academy) {
+      console.log(v); //zh, ch, yg v迭代的是值
+    }
+    //创建一个迭代器(指针), 有点类似于Qt
+    let iterator = academy[Symbol.iterator]();
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+
+    const banji = {
+      name: "dx",
+      stus: ["zs", "ls", "ww"],
+      [Symbol.iterator]() {
+        let index = 0;
+        const that = this;
+        console.log(that); //banji
+        return {
+          //当然这里写成箭头函数也是极好的
+          next: function () {
+            console.log(this); //{next: f}
+            if (index < that.stus.length) {
+              const result = { value: that.stus[index], done: false };
+              index++;
+              return result;
+            } else {
+              return { value: "undefined", done: true };
+            }
+          },
+        };
+      },
+    };
+
+    //只有实现了[Symbol.iterator]接口的object才能使用for of
+    for (let i of banji) {
+      console.log(i);
+    }
+  </script>
+</html>

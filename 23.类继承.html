@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>类继承</title>
+  </head>
+  <body></body>
+  <script>
+    //ES5构造函数继承
+    function Phone(brand, price) {
+      this.brand = brand;
+      this.price = price;
+    }
+    Phone.prototype.play = function () {
+      console.log("hhh");
+    };
+
+    function SmartPhone(brand, price, color, size) {
+      Phone.call(this, brand, price);
+      this.color = color;
+      this.size = size;
+    }
+
+    //设置子级构造函数的原型
+    SmartPhone.prototype = new Phone();
+    SmartPhone.prototype.constructor = SmartPhone;
+
+    //申明子类的方法
+    SmartPhone.prototype.photo = function () {
+      console.log("2333");
+    };
+    SmartPhone.prototype.game = function () {
+      console.log("666666");
+    };
+    const xiaomi = new SmartPhone("K40", 2000, "black", "5.5");
+    console.log(xiaomi);
+    xiaomi.play();
+    xiaomi.photo();
+    xiaomi.game();
+  </script>
+  <script>
+    class Student {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      study() {
+        console.log("Study!!!");
+      }
+      play() {
+        console.log("Play!!!");
+      }
+    }
+    class Undergraduate extends Student {
+      constructor(name, age, subject) {
+        //using parents' constructor method
+        super(name, age);
+        this.subject = subject;
+      }
+      research() {
+        console.log("research!!!");
+      }
+      //direct override parents' methods
+      play() {
+        console.log("Can't Play!!!");
+      }
+    }
+    const wdk = new Undergraduate("wdk", 18, "math");
+    console.log(wdk);
+    wdk.research();
+    //子类可以直接调用父类中的方法
+    wdk.study();
+    wdk.play();
+  </script>
+</html>

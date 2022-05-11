@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>箭头函数</title>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+        background-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+  </body>
+  <script>
+    const person = {
+      firstName: "Bill",
+      lastName: "Gates",
+      test1: function () {
+        console.log(this); //person 在方法中, this表示该方法所属的对象(这里指person)
+      },
+      test2: () => {
+        console.log(this); //window 箭头函数绑定作用域链的上一层(window)
+      },
+      test3: function () {
+        const that = this;
+        setTimeout(function () {
+          console.log(this); //window this指向使用函数时的对象, 即window
+          console.log(that); //person
+        });
+      },
+      test4: function () {
+        setTimeout(() => {
+          console.log(this); //person
+        });
+      },
+    };
+    // 1. 箭头函数体中的 this 对象，是定义函数时的对象，而不是使用函数时的对象
+    person.test1();
+    person.test2();
+    person.test3();
+    person.test4();
+
+    // 2. 不能作为构造函数来创建对象
+
+    // 3. 没有arguments变量来保存实参列表
+
+    /*******使用场景*******/
+    const box = document.getElementById("box");
+    box1.addEventListener("click", function () {
+      const _this = this;
+      console.log(_this); //div 指向被绑定元素
+      setTimeout(function () {
+        console.log(this); //window 指向使用函数时的对象
+        // this.style.backgroundcolor = "blue";
+        _this.style.backgroundColor = "blue";
+      });
+    });
+    box2.addEventListener("click", function () {
+      setTimeout(() => {
+        this.style.backgroundColor = "skyblue";
+      });
+    });
+    box3.addEventListener("click", () => {
+      console.log(this); //作用域是div, 绑定到作用域的上一层, 即window
+      setTimeout(() => {
+        this.style.backgroundColor = "skyblue";
+      });
+    });
+
+    const arr = [1, 4, 65, 24, 466, 13, 15];
+    const result = arr.filter((item) => item % 2 === 0);
+    console.log(result);
+
+    //适合使用的场景: 回调函数, 需要维护一个this上下文的时候
+    //不适合使用的场景: 定义函数的方法, 需要动态this
+  </script>
+</html>

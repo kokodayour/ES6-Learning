@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class类</title>
+  </head>
+  <body>
+    <p>class类相当于一个语法糖, 让写法更加的贴切oop</p>
+    <p>实例对象和函数对象的属性是不相通的</p>
+  </body>
+  <script>
+    // ES5写法
+    // function Phone(brand,price){
+    // this.brand = brand;
+    // this.price = price;
+    // }
+    // // 添加方法
+    // Phone.prototype.call = function(){
+    // console.log("我可以打电话！");
+    // }
+    // // 实例化对象
+    // let HuaWei = new Phone("华为",5999);
+    // HuaWei.call();
+    // console.log(HuaWei);
+    class phone {
+      //类的构造器, 名字不可改!
+      constructor(brand, price) {
+        this.brand = brand;
+        this.price = price;
+      }
+
+      //方法必须用这个方法书写, 不能用function定义方法
+      play() {
+        alert("游戏有害身心健康");
+      }
+
+      //静态属性
+      //函数对象, 即phone才拥有, 实例不拥有的
+      static name = "手机";
+      static getName() {
+        console.log("get name!");
+      }
+    }
+    const xiaomi = new phone("K40", 9999);
+    xiaomi.play();
+    console.log(xiaomi);
+    console.log(phone.name);
+    phone.getName();
+  </script>
+</html>

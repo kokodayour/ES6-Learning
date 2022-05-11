@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板字符串</title>
+  </head>
+  <body>
+    之前定义字符串都是用''或者"" 模板字符串相当于加强版的字符串，用反引号
+    `,除了作为普通字符串，还可以用来定义多行字符串，还可以在字符串中加入变量和表达式。
+  </body>
+  <script>
+    //   1.申明
+    const a = `I'm also a String!`;
+    console.log(a + " " + typeof a);
+
+    // 2.内容可以直接出现换行符
+    const b = `<ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>`;
+    console.log(b);
+
+    //拼接字符串, 个人感觉拼接地址还是很不错的~
+    const params = `name=name&age=age`;
+    const url = `localhost:8888/hello?${params}`;
+    console.log(url);
+  </script>
+</html>

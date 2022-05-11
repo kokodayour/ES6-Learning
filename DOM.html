@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <p>
+      DOM (Document Object Model)定义了访问和操作 HTML 文档的标准方法.
+      浏览器通过DOM以树结构表达 HTML 文档。
+    </p>
+    <p>
+      HTML DOM 定义了所有 HTML 元素的对象和属性, 以及访问它们的方法. 换言之,
+      HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准
+    </p>
+    <p>document对象表示当前页面, document对象就是整个DOM树的根节点</p>
+    <p>要查找DOM树的某个节点, 要从document对象开始查找(通常通过id和tag name)</p>
+    <p>由于http是无状态的, 服务器如何识别特定用户的身份呢?</p>
+    <p>document对象还有一个cookie属性, 可以获取当前页面的cookie</p>
+    <p>
+      cookie是由服务器发送的key-value标识符,浏览器访问网站时,
+      会在请求头`上附带上这个cookie, 服务器可据此来识别用户
+    </p>
+    <p>操作DOM就这么几种方法(更新, 遍历, 添加, 删除)</p>
+    <dl id="menu" style="border: 0.5px solid black">
+      <dt>moka</dt>
+      <dd>remoka</dd>
+      <dd>lenmoka</dd>
+      <dt>suannai</dt>
+      <dd>bjsuannai</dd>
+    </dl>
+  </body>
+  <script>
+    //拿到DOM
+    const menu = document.getElementById("menu");
+    const drinks = document.getElementsByTagName("dt"); //注意这个返回值是伪数组!
+    console.log(menu);
+    console.log(drinks);
+  </script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扩展运算符</title>
+  </head>
+  <body>
+    扩展运算符是三个点（...）.用于取出参数对象的所有可遍历属性，然后拷贝到当前对象之中.
+    记得要区别于不定参数function(...args)
+    <div></div>
+    <div></div>
+    <div></div>
+  </body>
+  <script>
+    //将数组转化成逗号分割的参数序列
+    const arr = [1, 2, 3, 4];
+    const test = function () {
+      console.log(arguments);
+    };
+    test(arr); //一个参数 [1,2,3,4]
+    test(...arr); //四个参数 1 2 3 4
+
+    //合并两个对象
+    const husband = {
+      h_name: "zs",
+      h_age: 18,
+      getH() {
+        return h_name + h_age;
+      },
+    };
+    const wife = {
+      w_name: "ls",
+      w_age: 81,
+      getW() {
+        return w_name + w_age;
+      },
+    };
+    const family = { ...husband, ...wife };
+    console.log(family); //success!
+
+    //字符串变数组
+    const students = [...`EDG`];
+    for (let i = 0; i < students.length; i++) {
+      console.log(students[i]);
+    }
+
+    //数组的拷贝
+    const arr1 = ["w", "h", "u"];
+    const arr2 = arr1; //本质上并没有创建一个新的数组
+    const arr3 = [...arr1];
+    arr2.push("ers");
+    arr3.push("wdk");
+    console.log(arr1); //['w', 'h', 'u', 'ers'] arr2同时改变了arr1的值, 从指针的角度去看
+    console.log(arr2); //['w', 'h', 'u', 'ers']
+    console.log(arr3); //['w', 'h', 'u', 'wdks']
+
+    //将伪数组转换为数组
+    const fake_arr = document.querySelectorAll("div");
+    const real_arr = [...fake_arr];
+    console.log(fake_arr); //除了有length属性之外, 不具备数组api
+    console.log(real_arr);
+  </script>
+</html>

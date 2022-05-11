@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>异步</title>
+  </head>
+  <body>
+    <p>传统单线程编程中,程序的运行是同步的</p>
+    <p>
+      同步不意味着所有步骤同时运行,而是指步骤在一个控制流序列中按顺序执行。而异步的概念则是不保证同步的概念,也就是说,一个异步过程的执行将不再与原有的序列有顺序关系。
+    </p>
+    <p>因为子线程独立于主线程,所以即使出现阻塞也不会影响主线程的运行。</p>
+    <p>
+      但是子线程有一个局限:一旦发射了以后就会与主线程失去同步,我们无法确定它的结束,如果结束之后需要处理一些事情,比如处理来自服务器的信息,我们是无法将它合并到主线程中去的。
+    </p>
+    <p>
+      为了解决这个问题,JavaScript
+      中的异步操作函数往往通过回调函数来实现异步任务的结果处理。
+    </p>
+  </body>
+  <script>
+    function timeOut() {
+      setTimeout(() => {
+        console.log("timeOut");
+      }, 0);
+    }
+    function someTime() {
+      let s = Date.now();
+      while (true) {
+        if (Date.now() - s > 2000) {
+          console.log("some Time");
+          break;
+        }
+      }
+    }
+
+    console.log(1);
+    timeOut();
+    someTime();
+    console.log(3);
+  </script>
+</html>

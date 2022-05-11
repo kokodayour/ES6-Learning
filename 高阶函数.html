@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高阶函数</title>
+  </head>
+  <body>
+    <p>
+      既然变量可以指向函数,函数的参数能接收变量,那么一个函数就可以接收另一个函数作为参数,这种函数就称之为高阶函数。
+    </p>
+    <p>个人理解调用回调函数的函数就是高阶函数</p>
+  </body>
+  <script>
+    //同python的map, reduce和filter, 将回调函数作用于数组里的每一个元素
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const arr1 = arr.map((item) => item * item);
+    const arr2 = arr.map(String);
+    console.log(`arr1=${arr1}`);
+    console.log(`arr2=${arr2}`);
+
+    //reduce函数必须接收两个参数，reduce()把结果继续和序列的下一个元素做累积计算
+    //reduce是减少的意思, 我认为在这里它的作用是逐渐减少元素,依次将两个元素变为1个从而得到最后的值
+    const arr3 = arr.reduce((x, y) => x * y);
+    const arr4 = arr.reduce((x, y) => x * 10 + y);
+    console.log(`arr3=${arr3}`);
+    console.log(`arr4=${arr4}`);
+
+    //filter会根据函数的返回值是true还是false来判断是否保留该元素
+    const arr5 = arr.filter((item) => item % 2 != 0);
+    console.log(`arr5=${arr5}`);
+    //filter接收的回调函数参数依次是元素, 位置, 数组
+    //filter去重
+    const arrs = [
+      "apple",
+      "strawberry",
+      "banana",
+      "pear",
+      "apple",
+      "orange",
+      "orange",
+      "strawberry",
+    ];
+    const arr6 = arrs.filter(function (element, index, self) {
+      return self.indexOf(element) === index;
+    });
+    //这里回调函数用箭头函数写居然报错了!
+    const arr6_false = arrs.filter((element, index, self) => {
+      self.indexOf(element) === index;
+    });
+    console.log(`arr6=${arr6}`);
+
+    //sort函数用来排序, 但是它默认是将元素转换成String, 再通过ASCII码进行从小到大排序
+    const arr7 = arr.sort();
+    console.log(`arr7=${arr7}`); //1,10,11,12,2...
+    //同样它也可以接收一个比较函数来实现自定义的排序
+    //我的理解是,前一个小于后一个的话就返回1(执行函数), 即进行排序让前一个大于后一个
+    //小心, 它会直接对原有数据进行更改!
+    const arr8 = arr.sort((x, y) => {
+      if (x < y) return 1;
+      else return -1;
+    });
+    console.log(`arr8=${arr8}`);
+  </script>
+</html>

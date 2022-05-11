@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOM</title>
+  </head>
+  <body>
+    <p>window对象不但充当全局作用域, 而且表示浏览器窗口</p>
+  </body>
+  <script>
+    console.log(window.innerHeight + " " + window.innerWidth);
+    console.log(window.outerHeight + " " + window.outerWidth);
+    console.log(navigator.appName + " " + navigator.appVersion);
+    console.log(navigator.language + " " + navigator.platform);
+    //screen不会因为浏览器的大小变化而变化, 但navigation会!
+    console.log("Screen size = " + screen.width + "X" + screen.height);
+    console.log(location);
+  </script>
+</html>

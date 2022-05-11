@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>let和const</title>
+    <style>
+      .item {
+        height: 100px;
+        width: 100px;
+        margin: 10px;
+        /* border: 2px, solid, antiquewhite; */
+        border-width: 2px;
+        border-style: solid;
+        border-color: antiquewhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </body>
+  <script>
+    //var是函数作用域, 并且具有申明提升(注意是申明, 不包括赋值)
+    //let是块级作用域, 在申明前执行的区间称为"暂时性死区"
+    //推荐在for循环中使用let, 而不是var, 因为后者会渗出到循环体外部
+    //const与let相似, 但它是常量, 且在申明时初始化(指向不变, 但不代表指向的内部不变), 因此不能用它来迭代
+    let items = document.getElementsByClassName("item");
+    for (var i = 0; i < items.length; i++) {
+      items[i].onclick = function () {
+        console.log(i); //3
+        this.style.background = "pink";
+      };
+    }
+  </script>
+</html>

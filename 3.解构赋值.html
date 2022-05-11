@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>解构赋值</title>
+  </head>
+  <body>
+    解构赋值是一种针对数组或者对象进行模式匹配，然后对其中的变量进行赋值。
+  </body>
+  <script>
+    // 数组的解构赋值
+    const F4 = ["zihuan", "cehui", "yaogan", "jisuanji", "dianxing"];
+    const [a, b, c, d] = F4;
+    console.log(a);
+    //可嵌套
+    //可忽略
+    //不完全解构
+    //剩余运算符
+    //字符串
+    //解构默认值
+
+    // 对象的解构赋值
+    const { e, f } = { foo: 12, fun: 13 };
+    console.log(e + " " + f); //这个好像必须要同名 underfined underfined
+    const { foo, fun } = { foo: 22, fun: 33 };
+    console.log(foo + " " + fun);
+
+    const { g, h, ...rest } = { g: 1, h: 2, i: 3, j: 4, k: 5, l: 6 };
+    console.log(rest); //{i: 3, j: 4, k: 5, l: 6}
+  </script>
+</html>

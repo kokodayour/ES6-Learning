@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbol类型</title>
+  </head>
+  <body>
+    <p>Symbol表示独一无二的值</p>
+    <p>Symbol好比身份证号, 参数是姓名. 姓名可以相同, 但身份证号绝不可能一样</p>
+    <p>Symbol不能进行各种运算</p>
+    <p>七种数据类型USONB you are so niubility</p>
+    <p>Undefined</p>
+    <p>Symbol String</p>
+    <p>Object</p>
+    <p>Null Number</p>
+    <p>Boolean</p>
+  </body>
+  <script>
+    const a = Symbol("a");
+    const fake_a = Symbol("a");
+    console.log(a === fake_a); //false
+
+    // Symbol.for相当于单例, 根据for的参数key返回Symbol
+    const b = Symbol.for("b");
+    const real_b = Symbol.for("b");
+    console.log(b === real_b); //true
+  </script>
+</html>
